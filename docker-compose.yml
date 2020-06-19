@@ -1,12 +1,12 @@
 version: '3'
 services:
   cms-mongodb:
-    image: mongo-auth
+    image: monk03/mongo-auth
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=toor
-      - MONGODB_APPLICATION_DATABASE=your_db
-      - MONGODB_APPLICATION_USER=test
-      - MONGODB_APPLICATION_PASS=tset
+      - MONGO_APPLICATION_DATABASE=your_db
+      - MONGO_APPLICATION_USER=test
+      - MONGO_APPLICATION_PASS=tset
     ports:
       - "27017:27017"

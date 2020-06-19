@@ -5,9 +5,9 @@ if [ -z $MONGO_INITDB_ROOT_USERNAME ] || [ -z $MONGO_INITDB_ROOT_PASSWORD ] ; th
 fi
 
 # Application Database User
-MONGODB_APPLICATION_DATABASE=${MONGODB_APPLICATION_DATABASE:-"test"}
-MONGODB_APPLICATION_USER=${MONGODB_APPLICATION_USER:-"test"}
-MONGODB_APPLICATION_PASS=${MONGODB_APPLICATION_PASS:-"test"}
+MONGO_APPLICATION_DATABASE=${MONGO_APPLICATION_DATABASE:-"test"}
+MONGO_APPLICATION_USER=${MONGO_APPLICATION_USER:-"test"}
+MONGO_APPLICATION_PASS=${MONGO_APPLICATION_PASS:-"test"}
 
 # Wait for MongoDB to boot
 RET=1
@@ -20,17 +20,17 @@ done
 
 sleep 3
 
-# If we've defined the MONGODB_APPLICATION_DATABASE environment variable and it's a different database
+# If we've defined the MONGO_APPLICATION_DATABASE environment variable and it's a different database
 # than admin, then create the user for that database.
 # First it authenticates to Mongo using the admin user it created above.
 # Then it switches to the REST API database and runs the createUser command 
 # to actually create the user and assign it to the database.
-if [ "$MONGODB_APPLICATION_DATABASE" != "admin" ]; then
-    echo "=> Creating a ${MONGODB_APPLICATION_DATABASE} database user with a password in MongoDB"
+if [ "$MONGO_APPLICATION_DATABASE" != "admin" ] && [ ! -f /data/db/.mongodb_password_set ]; then
+    echo "=> Creating a ${MONGO_APPLICATION_DATABASE} database user with a password in MongoDB"
     mongo admin -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD << EOF
-echo "Using $MONGODB_APPLICATION_DATABASE database"
-use $MONGODB_APPLICATION_DATABASE
-db.createUser({user: '$MONGODB_APPLICATION_USER', pwd: '$MONGODB_APPLICATION_PASS', roles:[{role:'dbOwner', db:'$MONGODB_APPLICATION_DATABASE'}]})
+echo "Using $MONGO_APPLICATION_DATABASE database"
+use $MONGO_APPLICATION_DATABASE
+db.createUser({user: '$MONGO_APPLICATION_USER', pwd: '$MONGO_APPLICATION_PASS', roles:[{role:'dbOwner', db:'$MONGO_APPLICATION_DATABASE'}]})
 EOF
 fi
 

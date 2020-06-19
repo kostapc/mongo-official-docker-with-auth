@@ -1,6 +1,12 @@
 # mongo official docker with auth
 A Docker Image for MongoDB which makes it easy to create an Admin, a Database and a Database User when the container is first launched.
 
+# monk03/mongo-auth
+
+```
+    docker pull monk03/mongo-auth
+```
+
 # Customization
 There are a number of environment variables which you can specify to customize the username and passwords of your users. 
 
@@ -9,7 +15,7 @@ There are a number of environment variables which you can specify to customize t
   ```
   services:
     db:
-      image: mongo-auth:latest
+      image: monk03/mongo-auth
       environment:
         - AUTH=yes
         - MONGO_INITDB_ROOT_USERNAME=admin
@@ -31,7 +37,7 @@ There are a number of environment variables which you can specify to customize t
     -e MONGODB_APPLICATION_DATABASE=mytestdatabase \
     -e MONGODB_APPLICATION_USER=testuser \
     -e MONGODB_APPLICATION_PASS=testpass \
-    -p 27017:27017 aashreys/mongo-auth:latest
+    -p 27017:27017 monk03/mongo-auth
   ```
 
 
