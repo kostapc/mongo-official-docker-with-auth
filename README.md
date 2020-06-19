@@ -20,9 +20,9 @@ There are a number of environment variables which you can specify to customize t
         - AUTH=yes
         - MONGO_INITDB_ROOT_USERNAME=admin
         - MONGO_INITDB_ROOT_PASSWORD=admin123
-        - MONGODB_APPLICATION_DATABASE=sample
-        - MONGODB_APPLICATION_USER=aashrey
-        - MONGODB_APPLICATION_PASS=admin123
+        - MONGO_APPLICATION_DATABASE=sample
+        - MONGO_APPLICATION_USER=aashrey
+        - MONGO_APPLICATION_PASS=admin123
       ports:
         - "27017:27017"
   // more configuration
@@ -34,9 +34,9 @@ There are a number of environment variables which you can specify to customize t
     -e AUTH=yes \
     -e MONGO_INITDB_ROOT_USERNAME=admin \
     -e MONGO_INITDB_ROOT_PASSWORD=adminpass \
-    -e MONGODB_APPLICATION_DATABASE=mytestdatabase \
-    -e MONGODB_APPLICATION_USER=testuser \
-    -e MONGODB_APPLICATION_PASS=testpass \
+    -e MONGO_APPLICATION_DATABASE=mytestdatabase \
+    -e MONGO_APPLICATION_USER=testuser \
+    -e MONGO_APPLICATION_PASS=testpass \
     -p 27017:27017 monk03/mongo-auth
   ```
 
